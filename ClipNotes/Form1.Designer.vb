@@ -27,7 +27,7 @@ Partial Class Form1
         Me.RecordTimer = New System.Windows.Forms.Timer(Me.components)
         Me.Exportbtn = New MetroFramework.Controls.MetroButton()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.TextField = New RichTextBoxPrintCtrl.RichTextBoxPrintCtrl.RichTextBoxPrintCtrl()
+        Me.TextField = New ClipNotes.RichTextBoxPrintCtrl.RichTextBoxPrintCtrl()
         Me.MetroContextMenu1 = New MetroFramework.Controls.MetroContextMenu(Me.components)
         Me.CopyToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasteToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -49,7 +49,6 @@ Partial Class Form1
         Me.StartRecordingOnStartupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RecordingMethodToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KeepOnTopToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MinimizeToTrayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewHelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -65,6 +64,7 @@ Partial Class Form1
         Me.TrayIconMenu = New MetroFramework.Controls.MetroContextMenu(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.Notify_RecordControl = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MinimizeToTrayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1.SuspendLayout()
         Me.MetroContextMenu1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
@@ -102,12 +102,8 @@ Partial Class Form1
         '
         'TextField
         '
-        Me.TextField.AcceptsTab = True
-        Me.TextField.BackColor = System.Drawing.Color.White
         Me.TextField.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextField.ContextMenuStrip = Me.MetroContextMenu1
         Me.TextField.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextField.Font = New System.Drawing.Font("Segoe UI", 9.25!)
         Me.TextField.Location = New System.Drawing.Point(5, 5)
         Me.TextField.Name = "TextField"
         Me.TextField.Size = New System.Drawing.Size(418, 406)
@@ -254,12 +250,6 @@ Partial Class Form1
         Me.KeepOnTopToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
         Me.KeepOnTopToolStripMenuItem.Text = "Keep On Top"
         '
-        'MinimizeToTrayToolStripMenuItem
-        '
-        Me.MinimizeToTrayToolStripMenuItem.Name = "MinimizeToTrayToolStripMenuItem"
-        Me.MinimizeToTrayToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
-        Me.MinimizeToTrayToolStripMenuItem.Text = "Minimize to Tray"
-        '
         'HelpToolStripMenuItem
         '
         Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewHelpToolStripMenuItem, Me.AboutToolStripMenuItem, Me.LicenseToolStripMenuItem})
@@ -362,6 +352,12 @@ Partial Class Form1
         Me.Notify_RecordControl.Size = New System.Drawing.Size(155, 22)
         Me.Notify_RecordControl.Text = "Start Recording"
         '
+        'MinimizeToTrayToolStripMenuItem
+        '
+        Me.MinimizeToTrayToolStripMenuItem.Name = "MinimizeToTrayToolStripMenuItem"
+        Me.MinimizeToTrayToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.MinimizeToTrayToolStripMenuItem.Text = "Minimize to Tray"
+        '
         'Form1
         '
         Me.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle
@@ -420,8 +416,6 @@ Partial Class Form1
     Friend WithEvents CopyToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents PasteToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents MonitorTimer As Timer
-    Friend WithEvents TextField As RichTextBoxPrintCtrl.RichTextBoxPrintCtrl.RichTextBoxPrintCtrl
-    Friend WithEvents MinimizeToTrayToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents NotifyIcon As NotifyIcon
     Friend WithEvents TrayIconMenu As MetroFramework.Controls.MetroContextMenu
     Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
@@ -429,4 +423,6 @@ Partial Class Form1
     Private WithEvents Exportbtn As MetroFramework.Controls.MetroButton
     Private WithEvents ClearField As MetroFramework.Controls.MetroButton
     Private WithEvents RecordControl As MetroFramework.Controls.MetroButton
+    Friend WithEvents TextField As RichTextBoxPrintCtrl.RichTextBoxPrintCtrl
+    Friend WithEvents MinimizeToTrayToolStripMenuItem As ToolStripMenuItem
 End Class

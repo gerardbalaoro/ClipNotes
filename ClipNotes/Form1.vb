@@ -193,10 +193,6 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub TextField_TextChanged(sender As Object, e As EventArgs) Handles TextField.TextChanged
-        TextField.BulletIndent = 1
-    End Sub
-
     Private Sub StartRecordingOnStartupToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StartRecordingOnStartupToolStripMenuItem.Click
         If StartRecordingOnStartupToolStripMenuItem.Checked = True Then
             My.Settings.RecordOnStart = True
@@ -235,7 +231,12 @@ Public Class Form1
             Me.TopMost = vbFalse
             KeepOnTopToolStripMenuItem.Checked = False
         End If
-        MetroMessageBox.Show(Me, My.Resources.About, "About", MessageBoxButtons.OK, MessageBoxIcon.Question, 250)
+        If MetroMessageBox.Show(Me, My.Resources.About, "About", MessageBoxButtons.OK, MessageBoxIcon.Question, 250) = DialogResult.OK Then
+            If My.Settings.AlwaysOnTop = True Then
+                Me.TopMost = True
+                KeepOnTopToolStripMenuItem.Checked = True
+            End If
+        End If
 
     End Sub
 
@@ -293,14 +294,18 @@ Public Class Form1
             SaveToolStripMenuItem.PerformClick()
         ElseIf e.Alt AndAlso e.Shift AndAlso e.KeyCode = Keys.D Then
             If My.Settings.AlwaysOnTop = True Then
-                Me.TopMost = vbFalse
-                KeepOnTopToolStripMenuItem.Checked = False
+                Me.TopMost = False
             End If
-            MetroMessageBox.Show(Me, vbNewLine & "Settings Debug Check:" & vbNewLine _
+            If MetroMessageBox.Show(Me, vbNewLine & "Settings Debug Check:" & vbNewLine _
                                  & vbNewLine & "Startup Run: " & My.Settings.RecordOnStart.ToString _
                                  & vbNewLine & "Classic Mode: " & My.Settings.UseClassicRecording.ToString _
                                  & vbNewLine & "Top Most: " & My.Settings.AlwaysOnTop.ToString _
-                                 , "Hidden Command: Debug Activated", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                 , "Hidden Command: Debug Activated", MessageBoxButtons.OK, MessageBoxIcon.Error) = DialogResult.OK Then
+                If My.Settings.AlwaysOnTop = True Then
+                    Me.TopMost = True
+                    KeepOnTopToolStripMenuItem.Checked = True
+                End If
+            End If
         End If
         e.Handled = False
     End Sub
@@ -347,7 +352,7 @@ Public Class Form1
             My.Settings.AlwaysOnTop = True
             My.Settings.Save()
             Me.TopMost = True
-        ElseIf StartRecordingOnStartupToolStripMenuItem.Checked = False Then
+        Else
             My.Settings.AlwaysOnTop = False
             My.Settings.Save()
             Me.TopMost = False
@@ -369,6 +374,10 @@ Public Class Form1
         If MetroMessageBox.Show(Me, My.Resources.Help, "Help", MessageBoxButtons.OK, MessageBoxIcon.Warning, 532) _
             = DialogResult.OK Then
             Me.Size = oldsize
+            If My.Settings.AlwaysOnTop = True Then
+                Me.TopMost = True
+                KeepOnTopToolStripMenuItem.Checked = True
+            End If
         End If
 
     End Sub
@@ -387,6 +396,10 @@ Public Class Form1
         If MetroMessageBox.Show(Me, My.Resources.License, "The MIT LICENSE", MessageBoxButtons.OK, MessageBoxIcon.Information, 490) _
             = DialogResult.OK Then
             Me.Size = oldsize
+            If My.Settings.AlwaysOnTop = True Then
+                Me.TopMost = True
+                KeepOnTopToolStripMenuItem.Checked = True
+            End If
         End If
     End Sub
 
@@ -400,9 +413,6 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub MinimizeToTrayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MinimizeToTrayToolStripMenuItem.Click
-        MinimizetoTray()
-    End Sub
 
     Sub MinimizetoTray()
         Me.WindowState = FormWindowState.Minimized
@@ -435,4 +445,7 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub MinimizeToTrayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MinimizeToTrayToolStripMenuItem.Click
+        MinimizetoTray()
+    End Sub
 End Class
