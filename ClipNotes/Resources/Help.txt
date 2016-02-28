@@ -1,0 +1,21 @@
+
+Recording (Clipboard Recording)
+	 -records copied texts automatically.
+Classic Method (for Recording)
+	 -records text copied to clipboard.
+Unclassic Method (Content-Aware)
+	-use to avoid redundancy/repeating items.
+	-Removes text formatting (i.e. Bold, Italic).
+
+- OPTIONS --------------------------------------------
+Start Recording on Startup
+	-start recording items from app launch.
+Use Classic Recording
+	-enable to use Classic Method.
+Keep on Top
+	-keep ClipNotes on top of all other windows.
+
+- HOTKEYS --------------------------------------------
+ALT + F2 	- Start/Stop Recording
+CTRL + ALT + Z 	- Undo Last Copy
+CTRL + ALT + Y 	- Redo Last Copy

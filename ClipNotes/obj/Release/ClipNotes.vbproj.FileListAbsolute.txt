@@ -1,0 +1,15 @@
+C:\Users\Gerard\Documents\Visual Studio 2015\Projects\ClipNotes\ClipNotes\bin\Release\ClipNotes.exe.config
+C:\Users\Gerard\Documents\Visual Studio 2015\Projects\ClipNotes\ClipNotes\bin\Release\ClipNotes.exe
+C:\Users\Gerard\Documents\Visual Studio 2015\Projects\ClipNotes\ClipNotes\bin\Release\ClipNotes.pdb
+C:\Users\Gerard\Documents\Visual Studio 2015\Projects\ClipNotes\ClipNotes\bin\Release\ClipNotes.xml
+C:\Users\Gerard\Documents\Visual Studio 2015\Projects\ClipNotes\ClipNotes\bin\Release\MetroFramework.dll
+C:\Users\Gerard\Documents\Visual Studio 2015\Projects\ClipNotes\ClipNotes\bin\Release\RichTextBoxPrintCtrl.dll
+C:\Users\Gerard\Documents\Visual Studio 2015\Projects\ClipNotes\ClipNotes\bin\Release\RichTextBoxPrintCtrl.pdb
+C:\Users\Gerard\Documents\Visual Studio 2015\Projects\ClipNotes\ClipNotes\bin\Release\RichTextBoxPrintCtrl.xml
+C:\Users\Gerard\Documents\Visual Studio 2015\Projects\ClipNotes\ClipNotes\obj\Release\ClipNotes.vbprojResolveAssemblyReference.cache
+C:\Users\Gerard\Documents\Visual Studio 2015\Projects\ClipNotes\ClipNotes\obj\Release\ClipNotes.Form1.resources
+C:\Users\Gerard\Documents\Visual Studio 2015\Projects\ClipNotes\ClipNotes\obj\Release\ClipNotes.Resources.resources
+C:\Users\Gerard\Documents\Visual Studio 2015\Projects\ClipNotes\ClipNotes\obj\Release\ClipNotes.vbproj.GenerateResource.Cache
+C:\Users\Gerard\Documents\Visual Studio 2015\Projects\ClipNotes\ClipNotes\obj\Release\ClipNotes.exe
+C:\Users\Gerard\Documents\Visual Studio 2015\Projects\ClipNotes\ClipNotes\obj\Release\ClipNotes.xml
+C:\Users\Gerard\Documents\Visual Studio 2015\Projects\ClipNotes\ClipNotes\obj\Release\ClipNotes.pdb

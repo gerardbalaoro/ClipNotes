@@ -1,0 +1,8 @@
+ClipNotes
+version 1.0 build 160227
+
+Created by Gerard Balaoro
+gerardbalaoro@outlook.com
+
+The MIT License
+Copyright (c) 2016. All Rights Reserved
