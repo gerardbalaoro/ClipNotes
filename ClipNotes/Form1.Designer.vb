@@ -25,9 +25,7 @@ Partial Class Form1
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.RecordTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.Exportbtn = New MetroFramework.Controls.MetroButton()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.TextField = New ClipNotes.RichTextBoxPrintCtrl.RichTextBoxPrintCtrl()
         Me.MetroContextMenu1 = New MetroFramework.Controls.MetroContextMenu(Me.components)
         Me.CopyToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasteToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -49,41 +47,42 @@ Partial Class Form1
         Me.StartRecordingOnStartupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RecordingMethodToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KeepOnTopToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MinimizeToTrayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewHelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LicenseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckUpdateBtn = New System.Windows.Forms.ToolStripMenuItem()
         Me.PrintDialog1 = New System.Windows.Forms.PrintDialog()
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         Me.PrintPreviewDialog1 = New System.Windows.Forms.PrintPreviewDialog()
         Me.PageSetupDialog1 = New System.Windows.Forms.PageSetupDialog()
         Me.MonitorTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.ClearField = New MetroFramework.Controls.MetroButton()
-        Me.RecordControl = New MetroFramework.Controls.MetroButton()
         Me.NotifyIcon = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.TrayIconMenu = New MetroFramework.Controls.MetroContextMenu(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.Notify_RecordControl = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MinimizeToTrayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.wb = New System.Windows.Forms.WebBrowser()
+        Me.MainPanel = New System.Windows.Forms.Panel()
+        Me.RecordControl = New MetroFramework.Controls.MetroTextBox.MetroTextButton()
+        Me.ClearField = New MetroFramework.Controls.MetroButton()
+        Me.Exportbtn = New MetroFramework.Controls.MetroButton()
+        Me.Spinner = New MetroFramework.Controls.MetroProgressSpinner()
+        Me.Notifier = New MetroFramework.Controls.MetroLabel()
+        Me.NotificationPanel = New System.Windows.Forms.Panel()
+        Me.NotificationTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.TextField = New ClipNotes.RichTextBoxPrintCtrl.RichTextBoxPrintCtrl()
         Me.Panel1.SuspendLayout()
         Me.MetroContextMenu1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.TrayIconMenu.SuspendLayout()
+        Me.MainPanel.SuspendLayout()
+        Me.NotificationPanel.SuspendLayout()
         Me.SuspendLayout()
         '
         'RecordTimer
         '
         Me.RecordTimer.Interval = 300
-        '
-        'Exportbtn
-        '
-        Me.Exportbtn.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Exportbtn.Location = New System.Drawing.Point(20, 508)
-        Me.Exportbtn.Name = "Exportbtn"
-        Me.Exportbtn.Size = New System.Drawing.Size(104, 29)
-        Me.Exportbtn.TabIndex = 2
-        Me.Exportbtn.Text = "Export"
-        Me.Exportbtn.UseSelectable = True
         '
         'Panel1
         '
@@ -94,21 +93,11 @@ Partial Class Form1
         Me.Panel1.AutoSize = True
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel1.Controls.Add(Me.TextField)
-        Me.Panel1.Location = New System.Drawing.Point(20, 84)
+        Me.Panel1.Location = New System.Drawing.Point(0, 23)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Padding = New System.Windows.Forms.Padding(5)
-        Me.Panel1.Size = New System.Drawing.Size(430, 418)
+        Me.Panel1.Size = New System.Drawing.Size(430, 419)
         Me.Panel1.TabIndex = 1
-        '
-        'TextField
-        '
-        Me.TextField.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextField.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextField.Location = New System.Drawing.Point(5, 5)
-        Me.TextField.Name = "TextField"
-        Me.TextField.Size = New System.Drawing.Size(418, 406)
-        Me.TextField.TabIndex = 0
-        Me.TextField.Text = ""
         '
         'MetroContextMenu1
         '
@@ -133,7 +122,7 @@ Partial Class Form1
         Me.MenuStrip1.BackColor = System.Drawing.Color.Teal
         Me.MenuStrip1.ForeColor = System.Drawing.Color.White
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.FormatToolStripMenuItem, Me.HelpToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(20, 60)
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(430, 24)
         Me.MenuStrip1.TabIndex = 2
@@ -250,9 +239,15 @@ Partial Class Form1
         Me.KeepOnTopToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
         Me.KeepOnTopToolStripMenuItem.Text = "Keep On Top"
         '
+        'MinimizeToTrayToolStripMenuItem
+        '
+        Me.MinimizeToTrayToolStripMenuItem.Name = "MinimizeToTrayToolStripMenuItem"
+        Me.MinimizeToTrayToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.MinimizeToTrayToolStripMenuItem.Text = "Minimize to Tray"
+        '
         'HelpToolStripMenuItem
         '
-        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewHelpToolStripMenuItem, Me.AboutToolStripMenuItem, Me.LicenseToolStripMenuItem})
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewHelpToolStripMenuItem, Me.AboutToolStripMenuItem, Me.LicenseToolStripMenuItem, Me.CheckUpdateBtn})
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.HelpToolStripMenuItem.Text = "Help"
@@ -260,20 +255,26 @@ Partial Class Form1
         'ViewHelpToolStripMenuItem
         '
         Me.ViewHelpToolStripMenuItem.Name = "ViewHelpToolStripMenuItem"
-        Me.ViewHelpToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
+        Me.ViewHelpToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
         Me.ViewHelpToolStripMenuItem.Text = "View Help"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
         Me.AboutToolStripMenuItem.Text = "About "
         '
         'LicenseToolStripMenuItem
         '
         Me.LicenseToolStripMenuItem.Name = "LicenseToolStripMenuItem"
-        Me.LicenseToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
+        Me.LicenseToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
         Me.LicenseToolStripMenuItem.Text = "License"
+        '
+        'CheckUpdateBtn
+        '
+        Me.CheckUpdateBtn.Name = "CheckUpdateBtn"
+        Me.CheckUpdateBtn.Size = New System.Drawing.Size(171, 22)
+        Me.CheckUpdateBtn.Text = "Check for Updates"
         '
         'PrintDialog1
         '
@@ -303,28 +304,6 @@ Partial Class Form1
         Me.MonitorTimer.Enabled = True
         Me.MonitorTimer.Interval = 300
         '
-        'ClearField
-        '
-        Me.ClearField.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.ClearField.Location = New System.Drawing.Point(130, 508)
-        Me.ClearField.Name = "ClearField"
-        Me.ClearField.Size = New System.Drawing.Size(104, 29)
-        Me.ClearField.TabIndex = 5
-        Me.ClearField.Text = "Clear"
-        Me.ClearField.UseSelectable = True
-        '
-        'RecordControl
-        '
-        Me.RecordControl.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.RecordControl.Highlight = True
-        Me.RecordControl.Location = New System.Drawing.Point(346, 508)
-        Me.RecordControl.Name = "RecordControl"
-        Me.RecordControl.Size = New System.Drawing.Size(104, 29)
-        Me.RecordControl.Style = MetroFramework.MetroColorStyle.Green
-        Me.RecordControl.TabIndex = 3
-        Me.RecordControl.Text = "Start Recording"
-        Me.RecordControl.UseSelectable = True
-        '
         'NotifyIcon
         '
         Me.NotifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Warning
@@ -352,21 +331,116 @@ Partial Class Form1
         Me.Notify_RecordControl.Size = New System.Drawing.Size(155, 22)
         Me.Notify_RecordControl.Text = "Start Recording"
         '
-        'MinimizeToTrayToolStripMenuItem
+        'wb
         '
-        Me.MinimizeToTrayToolStripMenuItem.Name = "MinimizeToTrayToolStripMenuItem"
-        Me.MinimizeToTrayToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
-        Me.MinimizeToTrayToolStripMenuItem.Text = "Minimize to Tray"
+        Me.wb.Location = New System.Drawing.Point(0, 0)
+        Me.wb.Name = "wb"
+        Me.wb.Size = New System.Drawing.Size(250, 250)
+        Me.wb.TabIndex = 0
+        '
+        'MainPanel
+        '
+        Me.MainPanel.Controls.Add(Me.RecordControl)
+        Me.MainPanel.Controls.Add(Me.MenuStrip1)
+        Me.MainPanel.Controls.Add(Me.Panel1)
+        Me.MainPanel.Controls.Add(Me.ClearField)
+        Me.MainPanel.Controls.Add(Me.Exportbtn)
+        Me.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.MainPanel.Location = New System.Drawing.Point(20, 60)
+        Me.MainPanel.Name = "MainPanel"
+        Me.MainPanel.Size = New System.Drawing.Size(430, 480)
+        Me.MainPanel.TabIndex = 6
+        '
+        'RecordControl
+        '
+        Me.RecordControl.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RecordControl.Image = Nothing
+        Me.RecordControl.Location = New System.Drawing.Point(323, 448)
+        Me.RecordControl.Name = "RecordControl"
+        Me.RecordControl.Size = New System.Drawing.Size(104, 29)
+        Me.RecordControl.Style = MetroFramework.MetroColorStyle.Green
+        Me.RecordControl.TabIndex = 1
+        Me.RecordControl.Text = "Start Recording"
+        Me.RecordControl.UseSelectable = True
+        Me.RecordControl.UseStyleColors = True
+        Me.RecordControl.UseVisualStyleBackColor = True
+        '
+        'ClearField
+        '
+        Me.ClearField.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.ClearField.Location = New System.Drawing.Point(113, 448)
+        Me.ClearField.Name = "ClearField"
+        Me.ClearField.Size = New System.Drawing.Size(104, 29)
+        Me.ClearField.TabIndex = 5
+        Me.ClearField.Text = "Clear"
+        Me.ClearField.UseSelectable = True
+        '
+        'Exportbtn
+        '
+        Me.Exportbtn.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Exportbtn.Location = New System.Drawing.Point(3, 448)
+        Me.Exportbtn.Name = "Exportbtn"
+        Me.Exportbtn.Size = New System.Drawing.Size(104, 29)
+        Me.Exportbtn.TabIndex = 2
+        Me.Exportbtn.Text = "Export"
+        Me.Exportbtn.UseSelectable = True
+        '
+        'Spinner
+        '
+        Me.Spinner.Location = New System.Drawing.Point(0, 0)
+        Me.Spinner.Maximum = 100
+        Me.Spinner.Name = "Spinner"
+        Me.Spinner.Size = New System.Drawing.Size(15, 15)
+        Me.Spinner.Speed = 3.0!
+        Me.Spinner.Style = MetroFramework.MetroColorStyle.Teal
+        Me.Spinner.TabIndex = 3
+        Me.Spinner.UseCustomBackColor = True
+        Me.Spinner.UseSelectable = True
+        Me.Spinner.UseStyleColors = True
+        Me.Spinner.Value = 30
+        '
+        'Notifier
+        '
+        Me.Notifier.AutoSize = True
+        Me.Notifier.FontSize = MetroFramework.MetroLabelSize.Small
+        Me.Notifier.ForeColor = System.Drawing.Color.White
+        Me.Notifier.Location = New System.Drawing.Point(21, 0)
+        Me.Notifier.Name = "Notifier"
+        Me.Notifier.Size = New System.Drawing.Size(123, 15)
+        Me.Notifier.TabIndex = 0
+        Me.Notifier.Text = "Checking for Updates..."
+        Me.Notifier.UseCustomBackColor = True
+        '
+        'NotificationPanel
+        '
+        Me.NotificationPanel.Controls.Add(Me.Notifier)
+        Me.NotificationPanel.Controls.Add(Me.Spinner)
+        Me.NotificationPanel.Location = New System.Drawing.Point(20, 42)
+        Me.NotificationPanel.Name = "NotificationPanel"
+        Me.NotificationPanel.Size = New System.Drawing.Size(155, 15)
+        Me.NotificationPanel.TabIndex = 7
+        Me.NotificationPanel.Visible = False
+        '
+        'NotificationTimer
+        '
+        '
+        'TextField
+        '
+        Me.TextField.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextField.ContextMenuStrip = Me.MetroContextMenu1
+        Me.TextField.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextField.Location = New System.Drawing.Point(5, 5)
+        Me.TextField.Name = "TextField"
+        Me.TextField.Size = New System.Drawing.Size(418, 407)
+        Me.TextField.TabIndex = 0
+        Me.TextField.Text = ""
         '
         'Form1
         '
         Me.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle
         Me.ClientSize = New System.Drawing.Size(470, 560)
-        Me.Controls.Add(Me.RecordControl)
-        Me.Controls.Add(Me.ClearField)
-        Me.Controls.Add(Me.Exportbtn)
-        Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.MenuStrip1)
+        Me.Controls.Add(Me.NotificationPanel)
+        Me.Controls.Add(Me.MainPanel)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.MinimumSize = New System.Drawing.Size(364, 300)
@@ -380,8 +454,11 @@ Partial Class Form1
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.TrayIconMenu.ResumeLayout(False)
+        Me.MainPanel.ResumeLayout(False)
+        Me.MainPanel.PerformLayout()
+        Me.NotificationPanel.ResumeLayout(False)
+        Me.NotificationPanel.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents RecordTimer As Timer
@@ -420,9 +497,16 @@ Partial Class Form1
     Friend WithEvents TrayIconMenu As MetroFramework.Controls.MetroContextMenu
     Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents Notify_RecordControl As ToolStripMenuItem
-    Private WithEvents Exportbtn As MetroFramework.Controls.MetroButton
-    Private WithEvents ClearField As MetroFramework.Controls.MetroButton
-    Private WithEvents RecordControl As MetroFramework.Controls.MetroButton
     Friend WithEvents TextField As RichTextBoxPrintCtrl.RichTextBoxPrintCtrl
     Friend WithEvents MinimizeToTrayToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents wb As WebBrowser
+    Friend WithEvents CheckUpdateBtn As ToolStripMenuItem
+    Friend WithEvents MainPanel As Panel
+    Friend WithEvents ClearField As MetroFramework.Controls.MetroButton
+    Friend WithEvents Exportbtn As MetroFramework.Controls.MetroButton
+    Friend WithEvents Notifier As MetroFramework.Controls.MetroLabel
+    Friend WithEvents RecordControl As MetroFramework.Controls.MetroTextBox.MetroTextButton
+    Friend WithEvents Spinner As MetroFramework.Controls.MetroProgressSpinner
+    Friend WithEvents NotificationPanel As Panel
+    Friend WithEvents NotificationTimer As Timer
 End Class

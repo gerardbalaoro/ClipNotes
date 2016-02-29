@@ -62,7 +62,7 @@ Namespace My.Resources
         
         '''<summary>
         '''  Looks up a localized string similar to ClipNotes
-        '''version 1.0 build 160227
+        '''version 1.0 build 160228
         '''
         '''Created by Gerard Balaoro
         '''gerardbalaoro@outlook.com

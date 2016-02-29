@@ -86,7 +86,7 @@ Public Class Form1
         TextField.Clear()
         TextField.Focus()
     End Sub
-
+#Region "HotKey"
     Private Declare Function GetAsyncKeyState Lib "user32" (ByVal vkey As Integer) As Integer
     Public Const KEY_ALT As Integer = &H1
     Public Const _HOTKEY As Integer = &H312
@@ -159,7 +159,7 @@ Public Class Form1
         UnregisterHotKey(Me.Handle, 1)
         UnregisterHotKey(Me.Handle, 2)
     End Sub
-
+#End Region
     Private Sub UndoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UndoToolStripMenuItem.Click
         TextField.Undo()
     End Sub
@@ -325,6 +325,9 @@ Public Class Form1
     End Function
     Private Sub Form1_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         fpChainedWindowHandle = SetClipboardViewer(Me.Handle)
+        If Date.Today.DayOfWeek = DayOfWeek.Tuesday Then
+            UpdateCheckInitiate()
+        End If
     End Sub
 
     Private Sub OnClose(sender As Object, e As EventArgs) Handles MyBase.Closing
@@ -447,5 +450,105 @@ Public Class Form1
 
     Private Sub MinimizeToTrayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MinimizeToTrayToolStripMenuItem.Click
         MinimizetoTray()
+    End Sub
+
+    Sub CheckforUpdates()
+        NotificationPanel.Hide()
+        Me.MaximizeBox = True
+        Me.Resizable = True
+        Dim version = wb.Document.GetElementsByTagName("h1")
+        If version IsNot Nothing Then
+            For Each curelement As HtmlElement In version
+                If (curelement.GetAttribute("className") = "page_title wordwrap") Then
+                    Dim webversion As Double = Val(curelement.InnerHtml().Remove(0, 10))
+                    Dim curversion As Double = Val(My.Application.Info.Version.ToString)
+                    If webversion > curversion Then
+                        If MetroMessageBox.Show(Me, "Update Found. Do you wish to download the update?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                            GetUrl()
+                        End If
+                    Else
+                        SilentNotify("No Updates", "Success", 3000)
+                    End If
+                Else
+                End If
+            Next
+        Else
+            SilentNotify("Server Error", "Error", 2000)
+        End If
+    End Sub
+    Sub GetUrl()
+        Dim downlink = wb.Document.GetElementsByTagName("a")
+        For Each curelement As HtmlElement In downlink
+            If curelement.GetAttribute("className") = "FileNameLink" Then
+                Dim link = curelement.GetAttribute("href")
+                Process.Start(link)
+            End If
+        Next
+    End Sub
+
+    Private Sub ToolStripMenuItem2_Click_1(sender As Object, e As EventArgs) Handles CheckUpdateBtn.Click
+        If My.Computer.Network.IsAvailable Then
+            UpdateCheckInitiate()
+        Else
+            If MetroMessageBox.Show(Me, "You are not connceted to a network.", "", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) = DialogResult.Retry Then
+                CheckUpdateBtn.PerformClick()
+            End If
+        End If
+    End Sub
+
+    Private Sub WebBrowerDocComplete(sender As Object, e As EventArgs) Handles wb.DocumentCompleted
+        CheckforUpdates()
+    End Sub
+
+    Sub UpdateCheckInitiate()
+        If My.Computer.Network.IsAvailable Then
+            SilentNotify("Checking Updates...", "Working", 0)
+            wb.Navigate("https://clipnotes.codeplex.com/releases")
+        Else
+            SilentNotify("No Network Found.", "Error", 2000)
+        End If
+
+    End Sub
+
+    Sub SilentNotify(Message As String, Mode As String, Timeout As Integer)
+        If Mode = "Working" Then
+            Spinner.Value = 50
+            Spinner.Spinning = True
+            Spinner.Style = MetroColorStyle.Teal
+            Spinner.Show()
+        ElseIf Mode = "Error"
+            Spinner.Value = 100
+            Spinner.Spinning = False
+            Spinner.Style = MetroColorStyle.Red
+            Spinner.Show()
+        ElseIf Mode = "Success"
+            Spinner.Value = 100
+            Spinner.Spinning = False
+            Spinner.Style = MetroColorStyle.Green
+            Spinner.Show()
+        ElseIf Mode = "Normal"
+            Spinner.Value = 100
+            Spinner.Spinning = False
+            Spinner.Style = MetroColorStyle.Teal
+            Spinner.Show()
+        Else
+            Spinner.Hide()
+        End If
+        If Timeout = 0 Then
+            NotificationTimer.Stop()
+            NotificationTimer.Enabled = False
+        Else
+            NotificationTimer.Interval = Timeout
+            NotificationTimer.Enabled = True
+            NotificationTimer.Start()
+        End If
+        NotificationPanel.Show()
+        Notifier.Text = Message
+
+    End Sub
+
+    Private Sub NotificationTimer_Tick(sender As Object, e As EventArgs) Handles NotificationTimer.Tick
+        If NotificationPanel.Visible = True Then NotificationPanel.Hide()
+        NotificationTimer.Stop()
     End Sub
 End Class
